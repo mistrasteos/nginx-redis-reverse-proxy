@@ -1,0 +1,19 @@
+services:
+
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    image: ghcr.io/mistrasteos/custom-nginx:main
+    ports:
+    - 16379:16379
+    - 8080:8080
+    volumes:
+    - ./nginx/nginx.conf:/usr/local/nginx/nginx.conf
+
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:7
+    command: ["redis-server", "--tcp-keepalive", "5"]
+    ports:
+    - 6379:6379
